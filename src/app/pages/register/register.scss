@@ -1,0 +1,882 @@
+:host {
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.register-page {
+  --aldar-bg: #eee1cd;
+  --aldar-surface: #fffdfa;
+  --aldar-input: #fbf8f2;
+
+  --aldar-green: #233b2f;
+  --aldar-green-light: #315341;
+
+  --aldar-terracotta: #bd684d;
+
+  --aldar-text: #1f2521;
+  --aldar-muted: #747b76;
+
+  --aldar-border: #ded3c1;
+
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  padding:
+    44px
+    clamp(24px, 5vw, 64px)
+    80px;
+
+  background: var(--aldar-bg);
+  color: var(--aldar-text);
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+.page-shell {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ----------------------------------
+   Brand
+---------------------------------- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  width: fit-content;
+
+  position: relative;
+  z-index: 3;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.brand-mark {
+  width: 29px;
+  height: 31px;
+
+  position: relative;
+  display: inline-block;
+
+  border:
+    5px solid
+    var(--aldar-green);
+
+  border-bottom-width: 4px;
+
+  border-radius:
+    18px
+    18px
+    2px
+    2px;
+
+  background: #efe5d4;
+}
+
+.brand-mark::before {
+  content: "";
+
+  width: 8px;
+  height: 8px;
+
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: var(--aldar-terracotta);
+}
+
+.brand-mark span {
+  width: 4px;
+  height: 9px;
+
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+
+  transform: translateX(-50%);
+
+  background: var(--aldar-terracotta);
+}
+
+.brand-arabic {
+  font-weight: 600;
+}
+
+
+/* ----------------------------------
+   Top heading
+---------------------------------- */
+
+.page-heading {
+  margin-top: 31px;
+
+  position: relative;
+  z-index: 3;
+}
+
+.arabic-heading {
+  width: fit-content;
+  margin: 0 0 4px;
+
+  color: var(--aldar-terracotta);
+
+  font-family:
+    "Segoe UI",
+    Tahoma,
+    sans-serif;
+
+  font-size: clamp(21px, 2vw, 27px);
+  font-weight: 700;
+}
+
+.page-heading h1 {
+  margin: 0;
+
+  font-size: clamp(29px, 3vw, 37px);
+  line-height: 1.08;
+
+  letter-spacing: -1.4px;
+}
+
+
+/* ----------------------------------
+   Decorative top-right architecture
+---------------------------------- */
+
+.hero-art {
+  width: 300px;
+  height: 220px;
+
+  position: absolute;
+  top: -44px;
+  right: 0;
+
+  overflow: hidden;
+
+  border-radius:
+    28px
+    28px
+    0
+    0;
+
+  background: #d6c5aa;
+
+  z-index: 0;
+}
+
+.hero-arch {
+  width: 183px;
+  height: 194px;
+
+  position: absolute;
+  left: 31px;
+  top: 19px;
+
+  border:
+    41px solid
+    var(--aldar-green);
+
+  border-bottom: 0;
+
+  border-radius:
+    110px
+    110px
+    0
+    0;
+}
+
+.hero-sun {
+  width: 60px;
+  height: 60px;
+
+  position: absolute;
+  right: 29px;
+  top: 9px;
+
+  border-radius: 50%;
+
+  background: var(--aldar-terracotta);
+}
+
+.hero-grid {
+  width: 94px;
+  height: 106px;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  background-color: #345442;
+
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 49%,
+      rgba(237, 225, 205, 0.28) 50%,
+      transparent 51%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 49%,
+      rgba(237, 225, 205, 0.28) 50%,
+      transparent 51%
+    ),
+    linear-gradient(
+      rgba(237, 225, 205, 0.22) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(237, 225, 205, 0.22) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    47px 44px,
+    47px 44px;
+}
+
+
+/* ----------------------------------
+   Main card
+---------------------------------- */
+
+.register-card {
+  width: calc(100% - 110px);
+  max-width: 968px;
+
+  margin:
+    6px
+    auto
+    0;
+
+  min-height: 675px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.18fr)
+    minmax(310px, 0.82fr);
+
+  gap: 64px;
+
+  position: relative;
+  z-index: 2;
+
+  padding:
+    47px
+    45px
+    50px;
+
+  border:
+    1px solid
+    var(--aldar-border);
+
+  border-radius: 29px;
+
+  background: var(--aldar-surface);
+}
+
+
+/* ----------------------------------
+   Form
+---------------------------------- */
+
+.form-panel {
+  min-width: 0;
+}
+
+.form-intro {
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+
+  color: var(--aldar-terracotta);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.01em;
+}
+
+.intro-text {
+  margin: 0;
+
+  color: var(--aldar-muted);
+
+  font-size: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-field label,
+.account-type legend {
+  color: var(--aldar-text);
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.form-field input {
+  width: 100%;
+  height: 44px;
+
+  padding:
+    0
+    14px;
+
+  outline: none;
+
+  border:
+    1px solid
+    var(--aldar-border);
+
+  border-radius: 11px;
+
+  background: var(--aldar-input);
+
+  color: var(--aldar-text);
+
+  font: inherit;
+  font-size: 13px;
+
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.form-field input::placeholder {
+  color: #858984;
+}
+
+.form-field input:focus {
+  border-color: var(--aldar-green);
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(35, 59, 47, 0.08);
+}
+
+.form-field input.input-invalid {
+  border-color: var(--aldar-terracotta);
+}
+
+.field-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.field-errors p {
+  margin: 0;
+
+  color: #a94f3b;
+
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+
+/* ----------------------------------
+   Password feedback
+---------------------------------- */
+
+.password-rules {
+  display: flex;
+  flex-wrap: wrap;
+  gap:
+    5px
+    12px;
+
+  margin-top: 1px;
+}
+
+.password-rules span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #92958f;
+
+  font-size: 10px;
+
+  transition: color 160ms ease;
+}
+
+.password-rules i {
+  width: 6px;
+  height: 6px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+
+  background: #c8c8c1;
+
+  transition: background 160ms ease;
+}
+
+.password-rules .rule-met {
+  color: var(--aldar-green);
+}
+
+.password-rules .rule-met i {
+  background: var(--aldar-green);
+}
+
+
+/* ----------------------------------
+   Account type segmented control
+---------------------------------- */
+
+.account-type {
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+}
+
+.account-type legend {
+  margin-bottom: 7px;
+}
+
+.role-selector {
+  width: 287px;
+  max-width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 6px;
+
+  padding: 6px;
+
+  border-radius: 11px;
+
+  background: #f4ede2;
+}
+
+.role-selector label {
+  height: 35px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid
+    #d7ccbb;
+
+  border-radius: 22px;
+
+  background: #fffdfa;
+
+  color: var(--aldar-text);
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.role-selector label.selected {
+  border-color: var(--aldar-green);
+
+  background: var(--aldar-green);
+
+  color: #fff;
+}
+
+.role-selector input {
+  width: 1px;
+  height: 1px;
+
+  position: absolute;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ----------------------------------
+   Terms
+---------------------------------- */
+
+.terms-field {
+  margin-top: -2px;
+}
+
+.terms-field > label {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+
+  color: #81847f;
+
+  cursor: pointer;
+
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.terms-field input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+
+  flex:
+    0
+    0
+    15px;
+
+  margin: 0;
+
+  accent-color: var(--aldar-green);
+}
+
+.terms-field strong {
+  color: #656a65;
+
+  font-weight: 500;
+}
+
+
+/* ----------------------------------
+   Submit
+---------------------------------- */
+
+.create-account-button {
+  width: 100%;
+  height: 44px;
+
+  margin-top: -1px;
+
+  border: 0;
+  border-radius: 24px;
+
+  background: var(--aldar-green);
+
+  color: #fff;
+
+  cursor: pointer;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    transform 150ms ease,
+    background 150ms ease,
+    opacity 150ms ease;
+}
+
+.create-account-button:hover:not(:disabled) {
+  background: #2d493a;
+
+  transform: translateY(-1px);
+}
+
+.create-account-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.create-account-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+
+/* ----------------------------------
+   Form messages
+---------------------------------- */
+
+.form-message {
+  padding:
+    10px
+    12px;
+
+  border-radius: 10px;
+
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.form-message--error {
+  border:
+    1px solid
+    rgba(189, 104, 77, 0.25);
+
+  background:
+    rgba(189, 104, 77, 0.08);
+
+  color: #934a36;
+}
+
+.form-message--success {
+  border:
+    1px solid
+    rgba(35, 59, 47, 0.2);
+
+  background:
+    rgba(35, 59, 47, 0.07);
+
+  color: var(--aldar-green);
+}
+
+
+/* ----------------------------------
+   Journey panel
+---------------------------------- */
+
+.journey-panel {
+  min-height: 575px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding:
+    31px
+    29px
+    36px;
+
+  border-radius: 23px;
+
+  background: var(--aldar-green);
+
+  color: #fff;
+}
+
+.journey-arabic {
+  width: fit-content;
+
+  margin:
+    0
+    0
+    20px;
+
+  color: #e8dbc7;
+
+  font-family:
+    "Segoe UI",
+    Tahoma,
+    sans-serif;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.journey-panel h2 {
+  margin: 0;
+
+  font-size: clamp(23px, 2.4vw, 29px);
+  line-height: 1.28;
+
+  letter-spacing: -0.5px;
+}
+
+.journey-steps {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 60px;
+
+  margin-top: 55px;
+}
+
+.journey-steps::before {
+  content: "";
+
+  width: 3px;
+
+  position: absolute;
+  top: 17px;
+  bottom: 17px;
+  left: 17px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+}
+
+.journey-step {
+  min-height: 34px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.step-number {
+  width: 29px;
+  height: 29px;
+
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex:
+    0
+    0
+    29px;
+
+  border-radius: 50%;
+
+  background: var(--aldar-terracotta);
+
+  color: #fff;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.step-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.journey-footer {
+  margin:
+    auto
+    0
+    0;
+
+  color:
+    rgba(255, 255, 255, 0.7);
+
+  font-size: 10px;
+}
+
+
+/* ----------------------------------
+   Responsive
+---------------------------------- */
+
+@media (max-width: 900px) {
+
+  .hero-art {
+    opacity: 0.6;
+  }
+
+  .register-card {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+
+    padding: 40px;
+  }
+
+  .journey-panel {
+    min-height: auto;
+  }
+
+  .journey-steps {
+    gap: 28px;
+
+    margin-top: 36px;
+  }
+
+  .journey-footer {
+    margin-top: 44px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .register-page {
+    padding:
+      28px
+      16px
+      40px;
+  }
+
+  .hero-art {
+    width: 170px;
+    height: 150px;
+
+    right: -40px;
+  }
+
+  .page-heading {
+    margin-top: 42px;
+  }
+
+  .page-heading h1 {
+    max-width: 310px;
+  }
+
+  .register-card {
+    margin-top: 24px;
+
+    padding:
+      28px
+      20px;
+
+    border-radius: 22px;
+  }
+
+  .journey-panel {
+    padding:
+      28px
+      22px;
+
+    border-radius: 18px;
+  }
+
+  .role-selector {
+    width: 100%;
+  }
+
+}
