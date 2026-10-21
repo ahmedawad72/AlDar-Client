@@ -1,0 +1,94 @@
+<main class="status-page">
+
+  <section class="status-card">
+
+    <a
+      class="brand"
+      routerLink="/"
+    >
+      AlDar — الدار
+    </a>
+
+
+    @if (confirming()) {
+
+      <div class="status-icon status-icon--loading">
+        ···
+      </div>
+
+      <p class="eyebrow">
+        ALMOST HOME
+      </p>
+
+      <h1>
+        Confirming your email...
+      </h1>
+
+      <p class="description">
+        Give us a moment while we activate
+        your AlDar account.
+      </p>
+
+    }
+
+
+    @else if (confirmed()) {
+
+      <div class="status-icon status-icon--success">
+        ✓
+      </div>
+
+      <p class="eyebrow">
+        WELCOME HOME
+      </p>
+
+      <h1>
+        Your email is confirmed.
+      </h1>
+
+      <p class="description">
+        Your AlDar account is ready.
+        You can now sign in and start learning.
+      </p>
+
+      <a
+        class="primary-action"
+        routerLink="/login"
+      >
+        Continue to login
+        <span>→</span>
+      </a>
+
+    }
+
+
+    @else if (errorMessage(); as error) {
+
+      <div class="status-icon status-icon--error">
+        !
+      </div>
+
+      <p class="eyebrow">
+        SOMETHING'S NOT RIGHT
+      </p>
+
+      <h1>
+        We couldn't confirm your email.
+      </h1>
+
+      <p class="description">
+        {{ error }}
+      </p>
+
+      <a
+        class="secondary-action"
+        routerLink="/"
+      >
+        Back to AlDar
+      </a>
+
+    }
+
+  </section>
+
+</main>

@@ -1,0 +1,178 @@
+<main class="status-page">
+
+  <section class="status-card">
+
+    <a
+      class="brand"
+      routerLink="/"
+    >
+      AlDar — الدار
+    </a>
+
+
+    @if (confirmationEmailSent() === true) {
+
+      <div class="status-icon">
+        ✉
+      </div>
+
+      <p class="eyebrow">
+        ONE MORE STEP
+      </p>
+
+      <h1>
+        Check your inbox.
+      </h1>
+
+      <p class="description">
+        We sent a confirmation link to
+      </p>
+
+      @if (email(); as registeredEmail) {
+
+        <strong class="email">
+          {{ registeredEmail }}
+        </strong>
+
+      }
+
+      <p class="hint">
+        Open the email and click the confirmation
+        link to activate your AlDar account.
+      </p>
+
+    }
+
+
+    @else if (
+      confirmationEmailSent() === false
+    ) {
+
+      <div
+        class="status-icon
+               status-icon--warning"
+      >
+        !
+      </div>
+
+      <p class="eyebrow">
+        ACCOUNT CREATED
+      </p>
+
+      <h1>
+        Your account is ready.
+      </h1>
+
+      <p class="description">
+        We couldn't send the confirmation email,
+        but your AlDar account was created successfully.
+      </p>
+
+      @if (email(); as registeredEmail) {
+
+        <strong class="email">
+          {{ registeredEmail }}
+        </strong>
+
+      }
+
+    }
+
+
+    @else {
+
+      <div class="status-icon">
+        ✉
+      </div>
+
+      <p class="eyebrow">
+        EMAIL CONFIRMATION
+      </p>
+
+      <h1>
+        Check your email.
+      </h1>
+
+      <p class="description">
+        Open your AlDar confirmation email
+        to activate your account.
+      </p>
+
+    }
+
+
+    @if (email()) {
+
+      <div class="resend-section">
+
+        <p>
+          Didn't receive the email?
+        </p>
+
+
+        <button
+          type="button"
+          class="resend-button"
+          [disabled]="resending()"
+          (click)="resendConfirmationEmail()"
+        >
+
+          @if (resending()) {
+
+            Sending...
+
+          } @else if (
+            confirmationEmailSent() === false
+          ) {
+
+            Try sending again
+
+          } @else {
+
+            Resend confirmation email
+
+          }
+
+        </button>
+
+      </div>
+
+    }
+
+
+    @if (resendSucceeded()) {
+
+      <div
+        class="feedback-message
+               feedback-message--success"
+      >
+        If an unconfirmed AlDar account exists
+        for this email, a new confirmation link
+        has been sent.
+      </div>
+
+    }
+
+
+    @if (resendError(); as error) {
+
+      <div
+        class="feedback-message
+               feedback-message--error"
+      >
+        {{ error }}
+      </div>
+
+    }
+
+
+    <a
+      class="home-link"
+      routerLink="/"
+    >
+      Back to AlDar
+    </a>
+
+  </section>
+
+</main>

@@ -1,0 +1,518 @@
+<main class="home-page">
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
+  <header class="navbar">
+
+    <a
+      class="brand"
+      routerLink="/"
+    >
+      <span class="brand-mark">
+        <span></span>
+      </span>
+
+      <span class="brand-text">
+        AlDar
+        <span>— الدار</span>
+      </span>
+    </a>
+
+
+    <nav class="nav-links">
+      <a href="#courses">
+        Courses
+      </a>
+
+      <a href="#experience">
+        Why AlDar
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+    </nav>
+
+
+    <div class="nav-actions">
+
+      <a
+        class="login-link"
+        routerLink="/login"
+      >
+        Log in
+      </a>
+
+      <a
+        class="register-link"
+        routerLink="/register"
+      >
+        Join AlDar
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+
+    <div class="hero-copy">
+
+      <p
+        class="hero-arabic"
+        dir="rtl"
+      >
+        مكانك للتعلّم والنمو
+      </p>
+
+      <h1>
+        Learning feels different
+        when it feels like
+        <em>home.</em>
+      </h1>
+
+      <p class="hero-description">
+        AlDar is a learning space built around curiosity,
+        progress, and belonging. Learn useful skills,
+        move at your own pace, and always know where to
+        come back.
+      </p>
+
+
+      <div class="hero-actions">
+
+        <a
+          class="primary-button"
+          routerLink="/register"
+        >
+          Start learning
+          <span>→</span>
+        </a>
+
+        <a
+          class="secondary-button"
+          href="#courses"
+        >
+          Explore courses
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- Decorative hero artwork -->
+    <div
+      class="hero-visual"
+      aria-hidden="true"
+    >
+
+      <div class="visual-sun"></div>
+
+      <div class="visual-building">
+
+        <div class="visual-arch">
+          <div class="arch-door"></div>
+        </div>
+
+        <div class="visual-window"></div>
+
+      </div>
+
+      <div class="visual-grid"></div>
+
+      <p class="visual-arabic">
+        الدار
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       EXPERIENCE / FEATURES
+  ========================== -->
+
+  <section
+    class="experience"
+    id="experience"
+  >
+
+    <div class="section-heading">
+
+      <p class="eyebrow">
+        MADE FOR HOW YOU LEARN
+      </p>
+
+      <h2>
+        Your learning space,
+        shaped around you.
+      </h2>
+
+    </div>
+
+
+    <div class="experience-grid">
+
+      <!-- Card 1 -->
+      <article class="experience-card experience-card--sand">
+
+        <div class="experience-art pace-art">
+          <div class="pace-circle"></div>
+          <div class="pace-arch"></div>
+        </div>
+
+        <div class="experience-content">
+
+          <span>01</span>
+
+          <h3>
+            Learn at your pace.
+          </h3>
+
+          <p>
+            Move quickly when you're inspired.
+            Slow down when something deserves more time.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- Card 2 -->
+      <article class="experience-card experience-card--green">
+
+        <div class="experience-art progress-art">
+
+          <div class="progress-line">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+        </div>
+
+        <div class="experience-content">
+
+          <span>02</span>
+
+          <h3>
+            See yourself progress.
+          </h3>
+
+          <p>
+            Small wins add up.
+            AlDar keeps your journey visible and motivating.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- Card 3 -->
+      <article class="experience-card experience-card--terra">
+
+        <div class="experience-art belonging-art">
+
+          <div class="belonging-door"></div>
+
+          <div class="belonging-sun"></div>
+
+        </div>
+
+        <div class="experience-content">
+
+          <span>03</span>
+
+          <h3>
+            Always have a place to return.
+          </h3>
+
+          <p>
+            Courses, progress, instructors, and your next
+            step live together in one familiar place.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       COURSES
+  ========================== -->
+
+  <section
+    class="courses-section"
+    id="courses"
+  >
+
+    <div class="courses-header">
+
+      <div>
+
+        <p class="eyebrow">
+          EXPLORE WHAT'S NEXT
+        </p>
+
+        <h2>
+          Courses worth
+          coming home to.
+        </h2>
+
+      </div>
+
+      <p class="courses-description">
+        Practical learning built to move with your life,
+        not compete with it.
+      </p>
+
+    </div>
+
+
+    <div class="course-grid">
+
+      @for (
+        course of courses;
+        track course.title
+      ) {
+
+        <article class="course-card">
+
+          <div class="course-cover">
+
+            <span class="course-category">
+              {{ course.category }}
+            </span>
+
+            <div class="course-cover-art">
+
+              <div class="cover-circle"></div>
+
+              <div class="cover-arch"></div>
+
+            </div>
+
+          </div>
+
+
+          <div class="course-content">
+
+            <h3>
+              {{ course.title }}
+            </h3>
+
+            <p>
+              {{ course.description }}
+            </p>
+
+
+            <div class="course-meta">
+
+              <span>
+                {{ course.instructor }}
+              </span>
+
+              <span>
+                {{ course.lessons }} lessons
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+
+    <a
+      class="browse-courses"
+      href="#courses"
+    >
+      Browse all courses
+      <span>→</span>
+    </a>
+
+  </section>
+
+
+  <!-- =========================
+       VALUE SECTION
+  ========================== -->
+
+  <section
+    class="values-section"
+    id="about"
+  >
+
+    <div class="values-copy">
+
+      <p
+        class="values-arabic"
+        dir="rtl"
+      >
+        التعلّم يبدأ من مكان تشعر فيه أنك تنتمي.
+      </p>
+
+      <h2>
+        More than courses.
+        A place built for
+        becoming.
+      </h2>
+
+      <p>
+        AlDar brings your learning journey together:
+        what you're exploring, what you've finished,
+        and where you're going next.
+      </p>
+
+    </div>
+
+
+    <div class="values-list">
+
+      <div class="value-item">
+
+        <span>01</span>
+
+        <div>
+          <h3>Clarity</h3>
+
+          <p>
+            Know what to learn and where you are
+            in the journey.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="value-item">
+
+        <span>02</span>
+
+        <div>
+          <h3>Momentum</h3>
+
+          <p>
+            Progress that stays visible makes it easier
+            to keep moving.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="value-item">
+
+        <span>03</span>
+
+        <div>
+          <h3>Belonging</h3>
+
+          <p>
+            Learning feels better when the environment
+            feels familiar.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FINAL CTA
+  ========================== -->
+
+  <section class="final-cta">
+
+    <div class="cta-decoration">
+      <div class="cta-sun"></div>
+      <div class="cta-arch"></div>
+    </div>
+
+
+    <div class="cta-content">
+
+      <p
+        class="cta-arabic"
+        dir="rtl"
+      >
+        مستعد تبدأ؟
+      </p>
+
+      <h2>
+        Your place is ready.
+      </h2>
+
+      <p>
+        Start learning, build momentum,
+        and make AlDar your own.
+      </p>
+
+
+      <a
+        class="cta-button"
+        routerLink="/register"
+      >
+        Create your account
+        <span>→</span>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+    <div class="brand">
+
+      <span class="brand-mark">
+        <span></span>
+      </span>
+
+      <span class="brand-text">
+        AlDar
+        <span>— الدار</span>
+      </span>
+
+    </div>
+
+
+    <p>
+      Your place to learn.
+    </p>
+
+
+    <span>
+      © AlDar
+    </span>
+
+  </footer>
+
+</main>

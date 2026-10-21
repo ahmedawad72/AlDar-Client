@@ -1,0 +1,438 @@
+<main class="register-page">
+
+  <div class="page-shell">
+
+    <!-- Decorative architecture from the Figma design -->
+    <div
+      class="hero-art"
+      aria-hidden="true"
+    >
+      <div class="hero-arch"></div>
+      <div class="hero-sun"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+
+    <!-- Brand -->
+    <header class="brand">
+
+      <span
+        class="brand-mark"
+        aria-hidden="true"
+      >
+        <span></span>
+      </span>
+
+      <span class="brand-name">
+        AlDar
+      </span>
+
+      <span class="brand-arabic">
+        — الدار
+      </span>
+
+    </header>
+
+
+    <!-- Page heading -->
+    <section class="page-heading">
+
+      <p
+        class="arabic-heading"
+        dir="rtl"
+      >
+        ابدأ رحلتك من الدار
+      </p>
+
+      <h1>
+        Find your place at AlDar.
+      </h1>
+
+    </section>
+
+
+    <!-- Main register card -->
+    <section class="register-card">
+
+      <!-- Form side -->
+      <div class="form-panel">
+
+        <!-- Form Intro -->
+        <div class="form-intro">
+
+          <p class="eyebrow">
+            CREATE YOUR ACCOUNT
+          </p>
+
+          <p class="intro-text">
+            A few details, then your learning home is ready.
+          </p>
+
+        </div>
+
+
+        <form
+          (submit)="onSubmit($event)"
+          novalidate
+        >
+
+          <!-- Full name -->
+          <div class="form-field">
+
+            <label for="displayName">
+              Full name
+            </label>
+
+            <input
+              id="displayName"
+              type="text"
+              autocomplete="name"
+              placeholder="Your full name"
+              [formField]="registerForm.displayName"
+              [class.input-invalid]="
+                registerForm.displayName().touched() &&
+                registerForm.displayName().invalid()
+              "
+            />
+
+            @if (
+              registerForm.displayName().touched() &&
+              registerForm.displayName().invalid()
+            ) {
+              <div class="field-errors">
+                @for (
+                  error of registerForm.displayName().errors();
+                  track $index
+                ) {
+                  <p>{{ error.message }}</p>
+                }
+              </div>
+            }
+
+          </div>
+
+
+          <!-- Email -->
+          <div class="form-field">
+
+            <label for="email">
+              Email
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              [formField]="registerForm.email"
+              [class.input-invalid]="
+                registerForm.email().touched() &&
+                registerForm.email().invalid()
+              "
+            />
+
+            @if (
+              registerForm.email().touched() &&
+              registerForm.email().invalid()
+            ) {
+              <div class="field-errors">
+                @for (
+                  error of registerForm.email().errors();
+                  track $index
+                ) {
+                  <p>{{ error.message }}</p>
+                }
+              </div>
+            }
+
+          </div>
+
+
+          <!-- Password -->
+          <div class="form-field">
+
+            <label for="password">
+              Password
+            </label>
+
+            <input
+              id="password"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Create a strong password"
+              [formField]="registerForm.password"
+              [class.input-invalid]="
+                registerForm.password().touched() &&
+                registerForm.password().invalid()
+              "
+            />
+
+
+            @if (
+              registerForm.password().touched() ||
+              registerForm.password().value().length > 0
+            ) {
+
+              <div class="password-rules">
+
+                <span
+                  [class.rule-met]="passwordRules().length"
+                >
+                  <i></i>
+                  6+ characters
+                </span>
+
+                <span
+                  [class.rule-met]="passwordRules().uppercase"
+                >
+                  <i></i>
+                  Uppercase
+                </span>
+                <span
+                  [class.rule-met]="passwordRules().lowercase"
+                >
+                  <i></i>
+                  Lowercase
+                </span>
+                <span
+                  [class.rule-met]="passwordRules().number"
+                >
+                  <i></i>
+                  Number
+                </span>
+
+                <span
+                  [class.rule-met]="passwordRules().symbol"
+                >
+                  <i></i>
+                  Symbol
+                </span>
+
+              </div>
+
+            }
+
+          </div>
+
+
+          <!-- Confirm password -->
+          <div class="form-field">
+
+            <label for="confirmPassword">
+              Confirm password
+            </label>
+
+            <input
+              id="confirmPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Repeat your password"
+              [formField]="registerForm.confirmPassword"
+              [class.input-invalid]="
+                registerForm.confirmPassword().touched() &&
+                registerForm.confirmPassword().invalid()
+              "
+            />
+
+            @if (
+              registerForm.confirmPassword().touched() &&
+              registerForm.confirmPassword().invalid()
+            ) {
+              <div class="field-errors">
+                @for (
+                  error of registerForm.confirmPassword().errors();
+                  track $index
+                ) {
+                  <p>{{ error.message }}</p>
+                }
+              </div>
+            }
+
+          </div>
+
+
+          <!-- Account type -->
+          <fieldset class="account-type">
+
+            <legend>
+              Account type
+            </legend>
+
+            <div class="role-selector">
+
+              <label
+                [class.selected]="
+                  registerForm.role().value() === 'Student'
+                "
+              >
+                <input
+                  type="radio"
+                  value="Student"
+                  [formField]="registerForm.role"
+                />
+
+                <span>
+                  Student
+                </span>
+              </label>
+
+
+              <label
+                [class.selected]="
+                  registerForm.role().value() === 'Teacher'
+                "
+              >
+                <input
+                  type="radio"
+                  value="Teacher"
+                  [formField]="registerForm.role"
+                />
+
+                <span>
+                  Instructor
+                </span>
+              </label>
+
+            </div>
+
+          </fieldset>
+
+
+          <!-- Terms -->
+          <div class="terms-field">
+
+            <label>
+
+              <input
+                type="checkbox"
+                [formField]="registerForm.acceptTerms"
+              />
+
+              <span>
+                I agree to the
+                <strong>Terms</strong>
+                and
+                <strong>Privacy Policy</strong>.
+              </span>
+
+            </label>
+
+            @if (
+              registerForm.acceptTerms().touched() &&
+              registerForm.acceptTerms().invalid()
+            ) {
+              <div class="field-errors">
+                @for (
+                  error of registerForm.acceptTerms().errors();
+                  track $index
+                ) {
+                  <p>{{ error.message }}</p>
+                }
+              </div>
+            }
+
+          </div>
+
+
+          <!-- Errors that belong to the whole request -->
+          @for (
+            error of registerForm().errors();
+            track $index
+          ) {
+            <div class="form-message form-message--error">
+              {{ error.message }}
+            </div>
+          }
+
+
+          <!-- Submit -->
+          <button
+            class="create-account-button"
+            type="submit"
+            [disabled]="registerForm().submitting()"
+          >
+
+            @if (registerForm().submitting()) {
+              Creating your account...
+            } @else {
+              Create account
+            }
+
+          </button>
+
+        </form>
+
+      </div>
+
+
+      <!-- Right visual panel -->
+      <aside class="journey-panel">
+
+        <p
+          class="journey-arabic"
+          dir="rtl"
+        >
+          مكانك للتعلّم.
+        </p>
+
+        <h2>
+          Start with curiosity.<br>
+          Build momentum.<br>
+          Come back anytime.
+        </h2>
+
+
+        <div class="journey-steps">
+
+          <div class="journey-step">
+
+            <span class="step-number">
+              01
+            </span>
+
+            <span class="step-label">
+              Choose what matters
+            </span>
+
+          </div>
+
+
+          <div class="journey-step">
+
+            <span class="step-number">
+              02
+            </span>
+
+            <span class="step-label">
+              Learn your way
+            </span>
+
+          </div>
+
+
+          <div class="journey-step">
+
+            <span class="step-number">
+              03
+            </span>
+
+            <span class="step-label">
+              See yourself progress
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <p class="journey-footer">
+          AlDar grows with your journey.
+        </p>
+
+      </aside>
+
+    </section>
+
+  </div>
+
+</main>
