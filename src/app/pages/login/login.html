@@ -1,1 +1,156 @@
-<p>login works!</p>
+<main class="login-page">
+  <!-- Decorative welcome panel -->
+  <aside class="welcome-panel" aria-label="Welcome to AlDar">
+    <div class="brand brand--light">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span>AlDar <span lang="ar" dir="rtl">— الدار</span></span>
+    </div>
+
+    <!-- Inline vector illustration: no external image assets needed. -->
+    <svg
+      class="welcome-panel__illustration"
+      viewBox="0 0 426 628"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <!-- Sunset and architectural arch -->
+      <circle cx="340" cy="94" r="41" fill="#B86A50" />
+      <path
+        d="M38 628V270C38 175 113 100 206 100S374 175 374 270V628Z"
+        fill="#E8DCC7"
+      />
+      <path
+        d="M93 628V301C93 238 143 187 206 187S319 238 319 301V628Z"
+        fill="#2C4538"
+      />
+
+      <!-- Landscape inside the arch -->
+      <path d="M93 456H319L274 497H192Z" fill="#CCB18C" />
+      <path d="M93 456L155 512L193 497L130 456Z" fill="#E1C5A0" />
+      <path d="M319 456L273 497L193 497L254 456Z" fill="#D5B995" />
+      <path d="M93 515L193 497L273 497L319 456V628H93Z" fill="#DCC7A7" opacity=".45" />
+
+      <!-- A small seated figure with a terracotta book -->
+      <circle cx="190" cy="429" r="9.5" fill="#1D2821" />
+      <path
+        d="M183 438C176 439 174 449 171 461L169 482H207L202 450C200 443 195 439 183 438Z"
+        fill="#1D2821"
+      />
+      <path d="M174 480H210L204 486H169Z" fill="#1D2821" />
+      <rect x="202" y="457" width="49" height="29" rx="3" fill="#B86A50" transform="rotate(-7 202 457)" />
+      <path d="M199 452L209 460" fill="none" stroke="#1D2821" stroke-width="5" stroke-linecap="round" />
+
+      <!-- Olive branch -->
+      <path
+        d="M315 430C326 397 337 364 344 316"
+        fill="none"
+        stroke="#87936C"
+        stroke-width="8"
+        stroke-linecap="round"
+      />
+      <path d="M342 349C333 324 311 313 284 315C307 324 328 338 342 349Z" fill="#87936C" />
+      <path d="M344 348C357 316 376 296 399 293C377 315 361 337 344 348Z" fill="#87936C" />
+
+      <!-- Soft diagonal shadows on the foreground -->
+      <path d="M0 490L426 355V628H0Z" fill="#D9D1BE" opacity=".14" />
+      <path d="M0 628L250 340L277 353L112 628Z" fill="#F3EDDF" opacity=".14" />
+    </svg>
+
+    <div class="welcome-panel__copy">
+      <p>A calm place to return to,<br />whenever you're ready to learn.</p>
+      <span lang="ar" dir="rtl">أهلاً بعودتك للدار</span>
+    </div>
+  </aside>
+
+  <!-- Login form -->
+  <section class="login-content" aria-labelledby="login-title">
+    <div class="login-content__inner">
+      <div class="brand brand--mobile">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span>AlDar <span lang="ar" dir="rtl">— الدار</span></span>
+      </div>
+
+      <p class="eyebrow">WELCOME HOME</p>
+      <h1 id="login-title">Welcome back to AlDar.</h1>
+      <p class="arabic-welcome" lang="ar" dir="rtl">أهلاً بعودتك للدار</p>
+      <p class="intro-text">Continue your journey from where you left it.</p>
+
+      <form class="login-form" (submit)="onSubmit($event)" novalidate>
+        <div class="form-field">
+          <label for="login-email">Email</label>
+          <input
+            id="login-email"
+            type="email"
+            placeholder="you@example.com"
+            autocomplete="username"
+            [formField]="loginForm.email"
+            [attr.aria-invalid]="loginForm.email().touched() && loginForm.email().invalid()"
+            [attr.aria-describedby]="loginForm.email().touched() && loginForm.email().invalid() ? 'login-email-error' : null"
+          />
+          @if (loginForm.email().touched() && loginForm.email().invalid()) {
+            <div class="field-errors" id="login-email-error">
+              @for (error of loginForm.email().errors(); track $index) {
+                <p>{{ error.message }}</p>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="login-password">Password</label>
+          <input
+            id="login-password"
+            type="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            [formField]="loginForm.password"
+            [attr.aria-invalid]="loginForm.password().touched() && loginForm.password().invalid()"
+            [attr.aria-describedby]="loginForm.password().touched() && loginForm.password().invalid() ? 'login-password-error' : null"
+          />
+          @if (loginForm.password().touched() && loginForm.password().invalid()) {
+            <div class="field-errors" id="login-password-error">
+              @for (error of loginForm.password().errors(); track $index) {
+                <p>{{ error.message }}</p>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-options">
+          <label class="remember-me" title="Remember me is coming soon">
+            <input type="checkbox" disabled />
+            <span>Remember me</span>
+          </label>
+          <button class="text-action" type="button" disabled title="Password reset is coming soon">
+            Forgot password?
+          </button>
+        </div>
+
+        @if (serverError()) {
+          <p class="server-error" role="alert">{{ serverError() }}</p>
+        }
+
+        <button class="submit-button" type="submit" [disabled]="loginForm().submitting()">
+          {{ loginForm().submitting() ? 'Signing in...' : 'Log in' }}
+        </button>
+      </form>
+
+      <div class="separator" aria-hidden="true"><span>or</span></div>
+
+      <button
+        class="google-button"
+        type="button"
+        disabled
+        title="Google sign-in is coming soon"
+      >
+        Continue with Google
+      </button>
+
+      <p class="signup-prompt">
+        New to AlDar?
+        <a routerLink="/register">Create your account <span aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </section>
+</main>

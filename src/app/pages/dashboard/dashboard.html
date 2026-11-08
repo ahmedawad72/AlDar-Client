@@ -1,0 +1,19 @@
+
+<button
+  type="button"
+  (click)="logout()"
+  [disabled]="loggingOut()"
+  class="logout-button"
+>
+  @if (loggingOut()) {
+    Signing out...
+  } @else {
+    Sign out
+  }
+</button>
+
+@if (logoutError()) {
+  <p role="alert" class="logout-error">
+    {{ logoutError() }}
+  </p>
+}
